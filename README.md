@@ -1,2 +1,0 @@
-# sandwich
-The Programming Language.
