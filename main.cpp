@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 #include<vector>
+#include<fstream>
 using namespace std;
 
 double variables_int[1001];
@@ -8,6 +9,7 @@ string variables_string[1001];
 
 //libraries
 bool math = false;
+bool files = false;
 
 void print(string &sentence, int &loop) {
   for(int i=1;i<=loop;++i) {
@@ -85,10 +87,17 @@ int main() {
     if(library == "math") {
       math = true;
     }
+    else if(library == "files") {
+      files = true;
+    }
     else {
       cout << library << " does not exist!" << endl;
     }
   }
+  /* ======================
+     ==== Math Library ====
+     ====================== 
+  */
   else if(command=="add" and math==true) {
     double valueOne;
     cin >> valueOne;
@@ -116,6 +125,50 @@ int main() {
     double valueTwo;
     cin >> valueTwo;
     cout << valueOne/valueTwo << endl;
+  }
+  /* =====================
+     === Files Library ===
+     =====================
+  */
+  else if(command=="show" and files == true) {
+    string PATH;
+    cin >> PATH; 
+    string TEXT; //Create a text string, which is used to output the text file
+    ifstream file(PATH); //Read from the text file
+    int line = 0; //the line of the text file
+
+    if(file.is_open()) {
+
+    cout << "The Content of " << PATH << ":" << endl;
+    cout << "====================================" << endl;
+
+    //Use a while loop together with the getline() function to read the file line by line
+    while (getline (file, TEXT)) {
+      //Output the text from the file
+      cout << line << " | " << TEXT << endl;
+      line++; //add 1 to the line to keep count on what line we are
+    }
+
+    cout << "====================================" << endl;
+    }
+    else {
+      cout << "File does not exist!";
+    }
+
+    //Close the file
+    file.close();
+    cout << endl;
+  }
+  else if(command=="write" and files==true) {
+    string path;
+    cin >> path;
+    ofstream file;
+    file.open(path);
+    string text;
+    cin.ignore();
+    getline(cin, text);
+
+    file << text;
   }
   else{
     cout << command << " does not exist!" << endl;
