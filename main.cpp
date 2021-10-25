@@ -130,7 +130,7 @@ int main() {
      === Files Library ===
      =====================
   */
-  else if(command=="show" and files == true) {
+  else if(command=="read" and files == true) {
     string PATH;
     cin >> PATH; 
     string TEXT; //Create a text string, which is used to output the text file
