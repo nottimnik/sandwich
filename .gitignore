@@ -1,2 +1,2 @@
 #ignores the debugger that we use to test the code
-./debugger.py
+./main.exe
